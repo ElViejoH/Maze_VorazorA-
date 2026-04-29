@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buscador de rutas - Voraz y A*</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body data-algorithm="greedy">
+  <main class="app">
+    <header>
+      <div>
+        <h1>Rutas en grilla</h1>
+        <p class="subtitle">Selecciona el punto A, el punto B, agrega obstáculos y compara búsqueda voraz contra A*.</p>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Aplicación de búsqueda de rutas">
+      <aside class="panel">
+        <div class="group">
+          <span class="label">Algoritmo</span>
+          <div class="segmented" role="group" aria-label="Algoritmo">
+            <button id="greedyBtn" class="active" type="button">Voraz</button>
+            <button id="astarBtn" type="button">A*</button>
+          </div>
+        </div>
+
+        <div class="group">
+          <span class="label">Editar grilla</span>
+          <div class="tool-grid" role="group" aria-label="Herramientas">
+            <button id="startTool" class="active" type="button">Punto A</button>
+            <button id="endTool" type="button">Punto B</button>
+            <button id="wallTool" type="button">Obstáculo</button>
+            <button id="eraseTool" type="button">Borrar</button>
+          </div>
+        </div>
+
+        <div class="group wide">
+          <span class="label">Acciones</span>
+          <div class="actions">
+            <button id="runBtn" class="primary" type="button">Buscar ruta</button>
+            <button id="clearPathBtn" class="secondary" type="button">Limpiar recorrido</button>
+            <button id="resetBtn" class="secondary danger" type="button">Reiniciar todo</button>
+          </div>
+        </div>
+
+        <div class="group wide">
+          <span class="label">Resultados</span>
+          <div class="stats" id="statsPanel" aria-live="polite" data-algorithm="greedy">
+            <div class="metric-card">
+              <span>Visitados</span>
+              <strong id="visitedStat">0</strong>
+            </div>
+            <div class="metric-card">
+              <span>Pasos de ruta</span>
+              <strong id="pathStat">0</strong>
+            </div>
+            <div class="algorithm-chip">
+              <span>Algoritmo</span>
+              <strong id="algorithmStat">Voraz</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="group wide">
+          <span class="label">Leyenda</span>
+          <div class="legend">
+            <div class="legend-item"><span class="swatch swatch-start"></span>A</div>
+            <div class="legend-item"><span class="swatch swatch-end"></span>B</div>
+            <div class="legend-item"><span class="swatch swatch-wall"></span>Obstáculo</div>
+            <div class="legend-item"><span class="swatch swatch-path"></span>Ruta</div>
+          </div>
+        </div>
+      </aside>
+
+      <section class="board-shell">
+        <div class="board-top">
+          <span class="status" id="status">Modo: ubicar punto A</span>
+          <span>Arrastra sobre la grilla para dibujar o borrar obstáculos.</span>
+        </div>
+        <div id="grid" class="grid" aria-label="Grilla interactiva"></div>
+        <div id="message" class="message" aria-live="polite"></div>
+      </section>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
